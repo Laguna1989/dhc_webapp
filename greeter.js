@@ -1,14 +1,3 @@
-// Create a "close" button and append it to each list item
-var myNodelist = document.getElementsByTagName("LI");
-var i;
-for (i = 0; i < myNodelist.length; i++) {
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  myNodelist[i].appendChild(span);
-}
-
 
 //////////////////////////
 //parse json file with resource data
@@ -18,26 +7,34 @@ var request = new XMLHttpRequest();
 request.open("GET", "resources.json", false);
 request.send(null)
 var resources = JSON.parse(request.responseText);
-
-
-
 for (var i in resources.resources)
 {
-    //alert(resources.resources[i]);
    newElement(resources.resources[i]);
 }
+//////////////////////////
+//parse json file for alarms
+//////////////////////////
+
+// var request = new XMLHttpRequest();
+// request.open("GET", "http://192.168.4.15:8085/alarms", false);
+// request.send(null)
+// var alarms = JSON.parse(request.responseText);
 
 
 
-// Click on a close button to hide the current list item
-var close = document.getElementsByClassName("close");
-var i;
-for (i = 0; i < close.length; i++) {
-  close[i].onclick = function() {
-    var div = this.parentElement;
-    div.style.display = "none";
-  }
-}
+/////////////////////////////////////////
+// get canvas and draw an image
+/////////////////////////////////////////
+var c = document.getElementById("mapCanvas");
+var ctx = c.getContext("2d");
+var img = new Image();
+img.src = "map.png"; // can also be a remote URL e.g. http://
+img.onload = function() {
+   ctx.drawImage(img,0,0);
+};
+
+
+
 
 
 
