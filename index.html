@@ -5,22 +5,25 @@
         <link type="text/css" rel="stylesheet" href="style.css">
     </head>
     <body>
-            
     <div>
+    <div style ="float:left; padding: 12px 8px 12px 40px;">
+        <h1>Map</h1>
+        <canvas id="mapCanvas" width="500" height="500" style="border:1px solid #000000;" ></canvas>
+    </div>
+            
+    <div style = "float:left; padding: 12px 8px 12px 40px;">
         <h1>Resource List</h1>
         <input type="text" id="filterInput" onkeyup="myFunction()" placeholder="Search">
         <table style="width:100%" id="resourceTable">
             <tr>
                 <th onclick="sortTable(0)">Type</th>
                 <th onclick="sortTable(1)">Name</th>
+                <th onclick="sortTable(2)">Room</th>
             </tr>
         </table>
         
     </div>
-
-    <div>
-        <h1>Map</h1>
-        <canvas id="mapCanvas" width="800" height="600" style="border:1px solid #000000;" ></canvas>
+    <div style="clear:both;"></div>
     </div>
         <script src="greeter.js"></script>
     </body>

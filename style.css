@@ -39,7 +39,7 @@ th:hover {
 td {
     cursor: pointer;
     position: relative;
-    padding: 12px 8px 12px 40px;
+    padding: 4px 8px 4px 40px;
     background: #eee;
     font-size: 18px;
     transition: 0.2s;

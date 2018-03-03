@@ -46,12 +46,39 @@ function newElement(resource)
     tr.setAttribute("myID", resource.id);
     
     var td = document.createElement("td");
-    td.appendChild(document.createTextNode(resource.type));
+    var tdi = document.createElement("img");
+
+    if (resource.type == "device")
+        tdi.setAttribute("src", "icons/icon_device.png");
+    else if (resource.type == "patient")
+        tdi.setAttribute("src", "icons/icon_patient.png");
+    else if (resource.type == "doctor")
+        tdi.setAttribute("src", "icons/icon_doctor.png");
+    tdi.setAttribute("width", "34");
+    tdi.setAttribute('alt', 'na');
+    tdi.setAttribute('style', 'padding: 0px 0px 0px 0px;');
+    td.appendChild(tdi);
+    td.setAttribute('style', 'padding: 4px 0px 0px 60px;');
+    // td.appendChild(document.createTextNode(resource.type));
+    
     tr.appendChild(td);
 
-    td2 = document.createElement("td");
+    var td2 = document.createElement("td");
     td2.appendChild(document.createTextNode(resource.name));
     tr.appendChild(td2);
+
+    var td3 = document.createElement("td");
+    var str = "";
+    // alert(resource.rooms);
+    for (var i in resource.rooms)
+    {
+        var r = resource.rooms[i];
+        str += " " +  r;
+    }
+    
+    td3.appendChild(document.createTextNode(str));
+    tr.appendChild(td3);
+
 
 
     document.getElementById("resourceTable").appendChild(tr);

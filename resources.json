@@ -1,26 +1,66 @@
 {
-    "name":"testlist",
+    "name":"testlist2",
     "resources": 
 	[
 		{
 			"name" 	: "Max Mustermann", 
             "type" 	: "patient", 
-			"id"    : 1
+            "id"    : 1,
+            "rooms" : [ "a2"]
         },
 		{
 			"name" 	: "Maria Musterfrau", 
             "type" 	: "patient", 
-			"id"    : 2
+            "id"    : 2,
+            "rooms" : [ "a2"]
         },
         {
 			"name" 	: "Dr. Schubert", 
             "type" 	: "doctor", 
-			"id"    : 3
+            "id"    : 3,
+            "rooms" : ["a1", "a2"]
         },
         {
-			"name" 	: "Ultraschall USX", 
+			"name" 	: "Ultrasound USX", 
             "type" 	: "device",
-			"id"    : 4
+            "id"    : 4,
+            "rooms" : ["a1"]
+        },
+        {
+			"name" 	: "Ultrasound USY", 
+            "type" 	: "device",
+            "id"    : 5,
+            "rooms" : ["a2"]
+        },
+        {
+			"name" 	: "XRay Device", 
+            "type" 	: "device",
+            "id"    : 6,
+            "rooms" : ["b1"]
+        },
+        {
+			"name" 	: "EKG 1", 
+            "type" 	: "device",
+            "id"    : 7,
+            "rooms" : ["b2"]
+        },
+        {
+			"name" 	: "EKG 2", 
+            "type" 	: "device",
+            "id"    : 8,
+            "rooms" : ["b2"]
+        },
+        {
+			"name" 	: "EKG 24h 1", 
+            "type" 	: "device",
+            "id"    : 9,
+            "rooms" : ["b2"]
+        },
+        {
+			"name" 	: "EKG 24h 2", 
+            "type" 	: "device",
+            "id"    : 10,
+            "rooms" : ["b2"]
 		}
     ]
 }
