@@ -37,9 +37,25 @@ img.onload = function()
 };  // can be redrawn later, but loading has to be complete first
 
 
+///////////////////////////////////////////////////////////////
+// Create New Alarm
+///////////////////////////////////////////////////////////////
+function newAlarm()
+{
+    overlayOn();
+}
 
+function overlayOn() {
+    document.getElementById("overlay").style.display = "block";
+}
 
+function overlayOff() {
+    document.getElementById("overlay").style.display = "none";
+}
+
+///////////////////////////////////////////////////////////////
 // Create a new list item when clicking on the "Add" button
+///////////////////////////////////////////////////////////////
 function newElement(resource) 
 {
     var tr = document.createElement("tr");

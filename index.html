@@ -5,6 +5,9 @@
         <link type="text/css" rel="stylesheet" href="style.css">
     </head>
     <body>
+    <div onclick="overlayOff()" id="overlay">
+        <div id="text">Overlay Text</div>
+    </div>
     <div>
     <div style ="float:left; padding: 12px 8px 12px 40px;">
         <h1>Map</h1>
@@ -25,6 +28,11 @@
     </div>
     <div style="clear:both;"></div>
     </div>
+    <div>
+        <h1>Alerts List</h1>
+        <span onclick="newAlarm()" class="addBtn">New Alarm</span>
+    </div>
+    
         <script src="greeter.js"></script>
     </body>
 </html>
