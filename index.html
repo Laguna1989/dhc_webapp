@@ -21,9 +21,9 @@
         <input type="text" id="filterInput" onkeyup="filterResources()" placeholder="Search">
         <table style="width:100%" id="resourceTable">
             <tr>
-                <th onclick="sortTable(0)">Type</th>
-                <th onclick="sortTable(1)">Name</th>
-                <th onclick="sortTable(2)">Room</th>
+                <th align="center" onclick="sortTable(0)">Type</th>
+                <th align="center" onclick="sortTable(1)">Name</th>
+                <th align="center" onclick="sortTable(2)">Room</th>
             </tr>
         </table>
         
@@ -31,19 +31,16 @@
     <div style="clear:both;"></div>
     </div>
     <div>
-        <h1>Alerts List</h1>
-        <span onclick="newAlarm()" class="addBtn">New Alarm</span>
-        
         <h1>Alarm List</h1>
         <input type="text" id="alarmFilter" onkeyup="filterAlarms()" placeholder="Search">
         <table style="width:100%" id="alarmTable">
-            <tr>
-                <th onclick="sortTable2(0)">Receiver</th>
-                <th onclick="sortTable2(1)">Sender</th>
-                <th onclick="sortTable2(2)">Sender Location</th>
-                <th onclick="sortTable2(1)">Message</th>
-                <th onclick="sortTable2(3)">Time</th>
-            </tr>
+            <thead>
+                <th align="center" onclick="sortTable2(0)">Receiver</th>
+                <th align="center" onclick="sortTable2(1)">Sender</th>
+                <th align="center" onclick="sortTable2(2)">Sender Location</th>
+                <th align="center" onclick="sortTable2(1)">Message</th>
+                <th align="center" onclick="sortTable2(3)">Time</th>
+            </thead>
         </table>
     </div>
     

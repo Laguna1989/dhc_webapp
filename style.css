@@ -1,9 +1,9 @@
 body {
-    background-color: #ddd;
+    background-color: #F8F9F8;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 h1 {
-    color: #222;
+    color: #010911;
 }
 
 
@@ -19,7 +19,7 @@ th {
     cursor: pointer;
     position: relative;
     padding: 12px 8px 12px 40px;
-    background: #ddd;
+    background: rgb(99, 170, 55);
     font-size: 18px;
     transition: 0.2s;
 
@@ -32,7 +32,7 @@ th {
 
 /* Darker background-color on hover */
 th:hover {
-    background: #ccc;
+    background: #5A6B7B;
 }
 
 /* Style the list items */
@@ -40,7 +40,7 @@ td {
     cursor: pointer;
     position: relative;
     padding: 4px 8px 4px 40px;
-    background: #eee;
+    background: rgb(162, 209, 130);
     font-size: 18px;
     transition: 0.2s;
 
@@ -51,14 +51,11 @@ td {
     user-select: none;
 }
 
-/* Set all odd list items to a different color (zebra-stripes) */
-td:nth-child(odd) {
-    background: #f9f9f9;
-}
+
 
 /* Darker background-color on hover */
 td:hover {
-    background: #ddd;
+    background: #5A6B7B;
 }
 
 /* Clear floats after the header */

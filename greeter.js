@@ -27,9 +27,24 @@ function getAlarmsForID(id)
 }
 
 getAlarmsForID("wrist1Id");
-for (var i in alarms)
+updateAlarmTable();
+
+
+function updateAlarmTable()
 {
-    pushAlarmToList(alarms[i]);
+    var tableHeaderRowCount = 1;
+    var table = document.getElementById('alarmTable');
+    var rowCount = table.rows.length;
+    for (var i = tableHeaderRowCount; i < rowCount; i++) 
+    {
+        table.deleteRow(tableHeaderRowCount);
+    }
+
+
+    for (var i in alarms)
+    {
+        pushAlarmToList(alarms[i]);
+    }
 }
 
 function pushAlarmToList(alarm)
@@ -84,13 +99,17 @@ function addAppointment ()
 {
   var data = new FormData(addAppointmentFrm)
   var xhr = new XMLHttpRequest()
-  xhr.open('POST', 'http://localhost:8085/alarms', true)
-  xhr.onreadystatechange = function (aEvt) {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      console.log("Data has been added");
-    }
-  }
-  xhr.send(data)
+
+  var msg = "Apointment%20with%20dr.%20Smith"
+
+  var params="?message="+msg + "&timestamp=2018-03-03%2015%3A03&timeWhenShow=2018-03-03%2021%3A03&creatorWristId=wrist1Id&receiverWristId=wrist1Id";
+
+  xhr.open('GET', "http://localhost:8085/addAlarm"+params, true)
+  xhr.send(null)
+
+  getAlarmsForID("wrist1Id");
+  
+  updateAlarmTable();
 }
 
 function overlayOn() {
@@ -110,6 +129,7 @@ function newElement(resource)
     tr.setAttribute("myID", resource.id);
     
     var td = document.createElement("td");
+    td.setAttribute("align", "center");
     var tdi = document.createElement("img");
 
     if (resource.type == "device")
@@ -128,10 +148,12 @@ function newElement(resource)
     tr.appendChild(td);
 
     var td2 = document.createElement("td");
+    td2.setAttribute("align", "center");
     td2.appendChild(document.createTextNode(resource.name));
     tr.appendChild(td2);
 
     var td3 = document.createElement("td");
+    td3.setAttribute("align", "center");
     var str = "";
     // alert(resource.rooms);
     for (var i in resource.rooms)
