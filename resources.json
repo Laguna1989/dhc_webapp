@@ -1,0 +1,26 @@
+{
+    "name":"testlist",
+    "resources": 
+	[
+		{
+			"name" 	: "Max Mustermann", 
+            "type" 	: "patient", 
+			"id"    : 1
+        },
+		{
+			"name" 	: "Maria Musterfrau", 
+            "type" 	: "patient", 
+			"id"    : 2
+        },
+        {
+			"name" 	: "Dr. Schubert", 
+            "type" 	: "doctor", 
+			"id"    : 3
+        },
+        {
+			"name" 	: "Ultraschall USX", 
+            "type" 	: "device",
+			"id"    : 4
+		}
+    ]
+}
