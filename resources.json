@@ -61,6 +61,19 @@
             "type" 	: "device",
             "id"    : 10,
             "rooms" : ["b2"]
+        },
+        {
+			"name" 	: "Blood Pressure Meter 1", 
+            "type" 	: "device",
+            "id"    : 11,
+            "rooms" : ["b3"]
+        },
+        {
+			"name" 	: "Blood Pressure Meter 2", 
+            "type" 	: "device",
+            "id"    : 12,
+            "rooms" : ["b3"]
 		}
+        
     ]
 }
