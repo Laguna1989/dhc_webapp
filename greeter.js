@@ -79,10 +79,18 @@ img.onload = function()
 ///////////////////////////////////////////////////////////////
 // Create New Alarm
 ///////////////////////////////////////////////////////////////
-function newAlarm()
+var addAppointmentFrm = document.getElementById('addAppointmentFrm');
+function addAppointment () 
 {
-    //
-    overlayOn();
+  var data = new FormData(addAppointmentFrm)
+  var xhr = new XMLHttpRequest()
+  xhr.open('POST', 'http://localhost:8085/alarms', true)
+  xhr.onreadystatechange = function (aEvt) {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      console.log("Data has been added");
+    }
+  }
+  xhr.send(data)
 }
 
 function overlayOn() {

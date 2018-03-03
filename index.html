@@ -47,6 +47,28 @@
         </table>
     </div>
     
+    <div> 
+        <form id="addAppointmentFrm">
+            <fieldset>
+                <legend>Appointments</legend>
+               
+                <input id="messageInput" type="text" name="message" />
+
+               
+                <input id="dateInput" type="date" name="timeWhenShow" />
+                
+               
+                <input id="creatorInput" type="text" name="creatorWristId" />
+
+               
+                <input id="receiverInput" type="text" name="receiverWristId" />
+
+                <span onclick="addAppointment()" class="addBtn">New Alarm</span>
+                
+            </fieldset>
+    </form>
+</div>
+
         <script src="greeter.js"></script>
     </body>
 </html>
