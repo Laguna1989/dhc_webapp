@@ -79,7 +79,12 @@ if (table != null)
 /////////////////////////////////////////
 // load json mock positions
 /////////////////////////////////////////
-// TODO
+request = new XMLHttpRequest();
+request.open("GET", "mockpositions.json", false);
+request.send(null)
+var mocks = JSON.parse(request.responseText);
+
+
 function getPositionByID(id)
 {
     if (id == 0)
@@ -89,15 +94,20 @@ function getPositionByID(id)
     }
     else
     {
+        if (mocks != null)
+        {
+            return [mocks.pos[id].x, mocks.pos[id].y];
+        }
         return [25,25];
     }
 }
 
 function updateTableSelection(id) 
 {
-    alert(id);
     ctx.clearRect(0,0,800,600);
     ctx.drawImage(img,0,0);
     var pos = getPositionByID(id);
+    ctx.fillStyle="#FF0000";
     ctx.fillRect(pos[0], pos[1], 20, 20);
+    ctx.fillStyle="#000000";
 }
