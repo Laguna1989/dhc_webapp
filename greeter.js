@@ -31,7 +31,15 @@ function getAlarmsForID(id)
     alarms = JSON.parse(request.responseText);
 }
 
-getAlarmsForID("wrist1Id");
+function getAllAlarms ()
+{
+    var request = new XMLHttpRequest();
+    request.open("GET", "http://localhost:8085/allalarms", false);
+    request.send(null);
+    alarms = JSON.parse(request.responseText);
+}
+
+getAllAlarms();
 updateAlarmTable();
 
 
@@ -53,16 +61,13 @@ function updateAlarmTable()
 
 function trackerIDtoMyID(tid)
 {
-    if (tid=="wrist1Id")
-        return 1;
-    else if (tid == "wrist2Id")
-        return 3;
-    else if (tid == "wrist3Id")
-        return 2;
-    else if (tid == "wrist4Id")
-        return 4;
-    else 
-        return 5;
+   for (var i in resources.resources)
+   {
+       var r = resources.resources[i];
+       if (r.wristId == tid)
+        return r.id;
+   }
+   return 0;
 }
 
 function getNameForId(id)
@@ -105,6 +110,8 @@ function pushAlarmToList(alarm)
     if (dthis < dnow)   // ignore past dates
         return;
 
+    if (alarm.message.includes("test") || alarm.message.includes("Test"))
+        return;
     
     var tr = document.createElement("tr");
 
@@ -186,7 +193,7 @@ function newAlarm ()
   xhr.open('GET', "http://localhost:8085/addAlarm"+params, true)
   xhr.send(null)
 
-  getAlarmsForID("wrist1Id");
+  getAllAlarms();
   
   updateAlarmTable();
 }

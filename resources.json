@@ -6,72 +6,84 @@
 			"name" 	: "Max Mustermann", 
             "type" 	: "patient", 
             "id"    : 1,
+            "wristId": "wrist1Id",
             "rooms" : [ "a1"]
         },
 		{
 			"name" 	: "Maria Musterfrau", 
             "type" 	: "patient", 
             "id"    : 2,
+            "wristId": "wrist3Id",
             "rooms" : [  "a2"]
         },
         {
 			"name" 	: "Dr. Schubert", 
             "type" 	: "doctor", 
             "id"    : 3,
+            "wristId": "wrist2Id",
             "rooms" : ["a3"]
         },
         {
 			"name" 	: "Ultrasound USX", 
             "type" 	: "device",
             "id"    : 4,
+            "wristId": "wrist4Id",
             "rooms" : ["a1"]
         },
         {
 			"name" 	: "Ultrasound USY", 
             "type" 	: "device",
             "id"    : 5,
+            "wristId": "wrist5Id",
             "rooms" : ["a2"]
         },
         {
 			"name" 	: "XRay Device", 
             "type" 	: "device",
             "id"    : 6,
+            "wristId": "wrist6Id",
             "rooms" : ["a3"]
         },
         {
 			"name" 	: "EKG 1", 
             "type" 	: "device",
             "id"    : 7,
+            "wristId": "wrist7Id",
             "rooms" : ["a2"]
         },
         {
 			"name" 	: "EKG 2", 
             "type" 	: "device",
             "id"    : 8,
+            "wristId": "wrist8Id",
             "rooms" : ["a2"]
         },
         {
 			"name" 	: "EKG 24h 1", 
             "type" 	: "device",
             "id"    : 9,
+            "wristId": "wrist9Id",
             "rooms" : ["a2"]
         },
         {
 			"name" 	: "EKG 24h 2", 
             "type" 	: "device",
             "id"    : 10,
+            "wristId": "wrist10Id",
             "rooms" : ["a2"]
         },
         {
 			"name" 	: "Blood Pressure Meter 1", 
             "type" 	: "device",
             "id"    : 11,
+            "wristId": "wrist11Id",
             "rooms" : ["a2"]
         },
         {
 			"name" 	: "Blood Pressure Meter 2", 
             "type" 	: "device",
             "id"    : 12,
+            "wristId": "wrist12Id",
             "rooms" : ["a2"]
 		}
         
