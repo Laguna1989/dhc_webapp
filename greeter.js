@@ -26,7 +26,7 @@ var alarms;
 function getAlarmsForID(id)
 {
     var request = new XMLHttpRequest();
-    request.open("GET", "http://localhost:8085/alarms?wristId=" + id, false);
+    request.open("GET", "http://localhost:8085/alarmsForWrist?wristId=" + id, false);
     request.send(null);
     alarms = JSON.parse(request.responseText);
 }
