@@ -7,6 +7,7 @@
             "type" 	: "patient", 
             "id"    : 1,
             "wristId": "wrist1Id",
+            "beaconId": "31364719343730393F0430",
             "rooms" : [ "a1"]
         },
 		{
@@ -14,6 +15,7 @@
             "type" 	: "patient", 
             "id"    : 2,
             "wristId": "wrist3Id",
+            "beaconId": "1234",
             "rooms" : [  "a2"]
         },
         {
@@ -21,6 +23,7 @@
             "type" 	: "doctor", 
             "id"    : 3,
             "wristId": "wrist2Id",
+            "beaconId": "3136471734373039330380",
             "rooms" : ["a3"]
         },
         {
@@ -28,6 +31,7 @@
             "type" 	: "device",
             "id"    : 4,
             "wristId": "wrist4Id",
+            "beaconId": "1234",
             "rooms" : ["a1"]
         },
         {
@@ -35,6 +39,7 @@
             "type" 	: "device",
             "id"    : 5,
             "wristId": "wrist5Id",
+            "beaconId": "1234",
             "rooms" : ["a2"]
         },
         {
@@ -42,6 +47,7 @@
             "type" 	: "device",
             "id"    : 6,
             "wristId": "wrist6Id",
+            "beaconId": "1234",
             "rooms" : ["a3"]
         },
         {
@@ -49,6 +55,7 @@
             "type" 	: "device",
             "id"    : 7,
             "wristId": "wrist7Id",
+            "beaconId": "1234",
             "rooms" : ["a2"]
         },
         {
@@ -56,6 +63,7 @@
             "type" 	: "device",
             "id"    : 8,
             "wristId": "wrist8Id",
+            "beaconId": "1234",
             "rooms" : ["a2"]
         },
         {
@@ -63,6 +71,7 @@
             "type" 	: "device",
             "id"    : 9,
             "wristId": "wrist9Id",
+            "beaconId": "1234",
             "rooms" : ["a2"]
         },
         {
@@ -70,6 +79,7 @@
             "type" 	: "device",
             "id"    : 10,
             "wristId": "wrist10Id",
+            "beaconId": "1234",
             "rooms" : ["a2"]
         },
         {
@@ -77,6 +87,7 @@
             "type" 	: "device",
             "id"    : 11,
             "wristId": "wrist11Id",
+            "beaconId": "1234",
             "rooms" : ["a2"]
         },
         {
@@ -84,6 +95,7 @@
             "type" 	: "device",
             "id"    : 12,
             "wristId": "wrist12Id",
+            "beaconId": "1234",
             "rooms" : ["a2"]
 		}
         

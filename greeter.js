@@ -1,4 +1,4 @@
-var displayPersons;
+var displayPersons = false;
 
 //////////////////////////
 //parse json file with resource data
@@ -72,11 +72,11 @@ function trackerIDtoMyID(tid)
    return 0;
 }
 
-function displayPatientsCheckBox()
+function displayPersonsCheckBox()
 {
     // Get the checkbox
     var checkBox = document.getElementById("myCheck");
-    
+    displayPersons = checkBox.checked;
 }
 
 function getNameForId(id)
@@ -158,6 +158,11 @@ function pushAlarmToList(alarm)
 }
 
 
+var globalID = 0;
+var globalType = "patient";
+
+
+
 /////////////////////////////////////////
 // get canvas and draw an image
 /////////////////////////////////////////
@@ -168,9 +173,22 @@ var img = new Image();
 img.src = "map2.png"; // can also be a remote URL e.g. http://
 img.onload = function() 
 {
-    ctx.drawImage(img,0,0);
+    updateCanvas();
 };  // can be redrawn later, but loading has to be complete first
 
+
+window.setInterval(function()
+{
+    updateCanvas();
+}, 5000);
+
+updateCanvas();
+
+function updateCanvas()
+{
+    updateTableSelection();
+
+}
 
 ///////////////////////////////////////////////////////////////
 // Create New Alarm
@@ -197,14 +215,22 @@ function newAlarm ()
   params += "&creatorWristId=" + creator;
   params += "&receiverWristId=" + receiver;
 
-  
+
   params = encodeURI(params);
   xhr.open('GET', "http://localhost:8085/addAlarm"+params, true)
   xhr.send(null)
 
   getAllAlarms();
+
   
   updateAlarmTable();
+
+  messageInput.value= "";
+  dateInput.value= "";
+  creatorInput.value= "";
+  receiverInput.value= "";
+
+
 }
 
 function overlayOn() {
@@ -276,7 +302,9 @@ if (table != null)
         {
             var myID = this.getAttribute("myID") ;
             var myType = this.getAttribute("myType");
-            updateTableSelection(myID, myType);
+            globalID = myID;
+            globalType = myType;
+            updateTableSelection();
         };
     }
 }
@@ -290,25 +318,71 @@ request.open("GET", "mockpositions.json", false);
 request.send(null)
 var mocks = JSON.parse(request.responseText);
 
+var positions;
+
+function getBeaconIdById(id)
+{
+    
+    for (i in resources.resources)
+    {
+        var r = resources.resources[i];
+        if (r.id == id)
+            return r.beaconId;
+        
+    }
+    return "";
+}
 
 function getPositionByID(id)
 {
-    if (id == 0 || id >= 9)
+    // alert(id);
+    var request = new XMLHttpRequest();
+    request.open("GET", "http://localhost:8085/devicesLastCords", false);
+    request.send(null);
+    positions = JSON.parse(request.responseText);
+
+    var beaconId = getBeaconIdById(id);
+    
+
+    if (beaconId == null ||beaconId  == "")
     {
-        // TODO get position data
         return [5,5];
     }
     else
     {
-        if (mocks != null)
+                                                           
+        if (beaconId == "31364719343730393F0430" || beaconId == "3136471734373039330380")
         {
-            return [mocks.pos[id].x, mocks.pos[id].y];
+            for (var i in positions)
+            {
+                var p = positions[i][0];
+                if (p.beconId == beaconId)
+                {
+                    //alert([p.x, p.y]);
+                    return TransformPosition(p.x, p.y);
+                }
+            }
+            return [5,5];
         }
-        return [25,25];
+        else
+        {
+            if (mocks != null)
+            {
+                return [mocks.pos[id].x, mocks.pos[id].y];
+            }
+            return [25,25];
+        }
     }
 }
 
-function updateTableSelection(id, type) 
+
+function TransformPosition(x,y)
+{
+    return [(16 - x)/16*500 , (9-y)/9*500];
+}
+
+
+function updateTableSelection() 
 {
     
     ctx.clearRect(0,0,800,600);
@@ -332,13 +406,17 @@ function updateTableSelection(id, type)
 
     }
 
-    if (type == "device")
+    if ( displayPersons ||  globalType == "device")
     {
-        var pos = getPositionByID(id);
+
+        var pos = getPositionByID(globalID);
         ctx.fillRect(pos[0], pos[1], 20, 20);
         ctx.fillStyle="#000000";
     }
 }
+
+
+
 
 
 ////////////////////////////////////////
@@ -489,6 +567,8 @@ function sortTable2(n) {
         } 
     }
 }
+
+
 
 
 ////////////////////////////////////

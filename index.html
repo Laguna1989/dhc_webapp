@@ -6,6 +6,9 @@
         <title>Maze Master</title>
         <link type="text/css" rel="stylesheet" href="style.css">
     </head>
+
+
+
     <body>
     <div onclick="overlayOff()" id="overlay">
         <div id="text">Overlay Text</div>
@@ -14,11 +17,13 @@
     <div style ="float:left; padding: 12px 8px 12px 40px;">
         <h1>Map</h1>
         <canvas id="mapCanvas" width="500" height="500" style="border:1px solid #000000;" ></canvas>
+        
     </div>
             
     <div style = "float:left; padding: 12px 8px 12px 40px;">
         <h1>Resource List</h1>
-        <input type="text" id="filterInput" onkeyup="filterResources()" placeholder="Search">
+        <input type="checkbox" id="myCheck" onclick="displayPersonsCheckBox()">Display Persons</input>
+        <input type="text" id="filterInput" onkeyup="filterResources()" placeholder="Search" >
         <table style="width:100%" id="resourceTable">
             <tr>
                 <th align="center" onclick="sortTable(0)">Type</th>
@@ -29,10 +34,11 @@
         
     </div>
     <div style="clear:both;"></div>
+    
     </div>
     <div>
         <h1>Alarm List</h1>
-        <input type="checkbox" id="myCheck" onclick="myFunction()">
+        
         <input type="text" id="alarmFilter" onkeyup="filterAlarms()" placeholder="Search">
 
         <table style="width:100%" id="alarmTable">
