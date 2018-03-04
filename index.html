@@ -49,18 +49,11 @@
             <fieldset>
                 <legend>Appointments</legend>
                
-                <input id="messageInput" type="text" name="message" />
-
-               
-                <input id="dateInput" type="date" name="timeWhenShow" />
-                
-               
-                <input id="creatorInput" type="text" name="creatorWristId" />
-
-               
-                <input id="receiverInput" type="text" name="receiverWristId" />
-
-                <span onclick="addAppointment()" class="addBtn">New Alarm</span>
+                <input id="messageInput" type="text" name="message" placeholder="Message" />
+                <input id="dateInput" type="date" name="timeWhenShow" placeholder="Time" />
+                <input id="creatorInput" type="text" name="creatorWristId" placeholder="Creator" />
+                <input id="receiverInput" type="text" name="receiverWristId" placeholder="Receiver" />
+                <span onclick="newAlarm()" class="addBtn">New Alarm</span>
                 
             </fieldset>
     </form>

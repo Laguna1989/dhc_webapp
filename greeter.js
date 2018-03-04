@@ -37,7 +37,6 @@ updateAlarmTable();
 
 function updateAlarmTable()
 {
-    
     var tableHeaderRowCount = 1;
     var table = document.getElementById('alarmTable');
     var rowCount = table.rows.length;
@@ -45,7 +44,6 @@ function updateAlarmTable()
     {
         table.deleteRow(tableHeaderRowCount);
     }
-
 
     for (var i in alarms)
     {
@@ -80,32 +78,63 @@ function getNameForId(id)
     return "desktop";
 }
 
+function getRoomForID(id)
+{
+    if (id == 0 ||id == 5)
+        return "desktop";
+    for(var i in resources.resources)
+    {
+        var r = resources.resources[i];
+        if (r.id == id)
+            return r.rooms;
+    }
+    return "desktop";
+}
+
 function pushAlarmToList(alarm)
 {
+    
+    if (alarm.completed)    // don't add this alarm
+        return; 
+
+
+    var dnow = new Date();
+    var timeText = alarm.timeWhenShow;
+    var dthis = Date.parse(timeText);
+
+    if (dthis < dnow)   // ignore past dates
+        return;
+
     
     var tr = document.createElement("tr");
 
 
+    // receiver
     var td = document.createElement("td");
     var idText = getNameForId(trackerIDtoMyID(alarm.receiverWristId));
     td.appendChild(document.createTextNode(idText))
     tr.appendChild(td);
 
+    // creator
     var td2 = document.createElement("td");
     var idText2 = getNameForId(trackerIDtoMyID(alarm.creatorWristId));
     td2.appendChild(document.createTextNode(idText2));
     tr.appendChild(td2);
 
+    // room
     var td3 = document.createElement("td");
-    td3.appendChild(document.createTextNode(" "));
+    var idText3 = getRoomForID(trackerIDtoMyID(alarm.creatorWristId));
+    td3.appendChild(document.createTextNode(idText3));
     tr.appendChild(td3);
 
+    // message
     var td4 = document.createElement("td");
     td4.appendChild(document.createTextNode(alarm.message));
     tr.appendChild(td4);
 
+    // time
     var td5 = document.createElement("td");
-    td5.appendChild(document.createTextNode(alarm.timeWhenShow));
+    td5.appendChild(document.createTextNode(timeText));
     tr.appendChild(td5);
 
     document.getElementById("alarmTable").appendChild(tr);
@@ -130,15 +159,29 @@ img.onload = function()
 ///////////////////////////////////////////////////////////////
 // Create New Alarm
 ///////////////////////////////////////////////////////////////
-var addAppointmentFrm = document.getElementById('addAppointmentFrm');
-function addAppointment () 
+var messageInput = document.getElementById('messageInput');
+var dateInput = document.getElementById('dateInput');
+var creatorInput = document.getElementById('creatorInput');
+var receiverInput = document.getElementById('receiverInput');
+
+function newAlarm () 
 {
   var data = new FormData(addAppointmentFrm)
   var xhr = new XMLHttpRequest()
 
-  var msg = "Apointment%20with%20dr.%20Smith"
+  var msg = messageInput.value;
+  var date = dateInput.value;
+  var dateNow = new Date().toLocaleString();
+  var creator = creatorInput.value;
+  var receiver = receiverInput.value;
 
-  var params="?message="+msg + "&timestamp=2018-03-03%2015%3A03&timeWhenShow=2018-03-03%2021%3A03&creatorWristId=wrist1Id&receiverWristId=wrist1Id";
+  var params="?message="+msg;
+  params += "&timestamp="+dateNow;
+  params += "&timeWhenShow="+ date;
+  params += "&creatorWristId=" + creator;
+  params += "&receiverWristId=" + receiver;
+
+  params = encodeURI(params);
 
   xhr.open('GET', "http://localhost:8085/addAlarm"+params, true)
   xhr.send(null)

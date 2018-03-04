@@ -6,19 +6,19 @@
 			"name" 	: "Max Mustermann", 
             "type" 	: "patient", 
             "id"    : 1,
-            "rooms" : [ "a1", "a2"]
+            "rooms" : [ "a1"]
         },
 		{
 			"name" 	: "Maria Musterfrau", 
             "type" 	: "patient", 
             "id"    : 2,
-            "rooms" : [ "a1", "a2"]
+            "rooms" : [  "a2"]
         },
         {
 			"name" 	: "Dr. Schubert", 
             "type" 	: "doctor", 
             "id"    : 3,
-            "rooms" : ["a1", "a2"]
+            "rooms" : ["a3"]
         },
         {
 			"name" 	: "Ultrasound USX", 
