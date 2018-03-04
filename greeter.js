@@ -28,7 +28,7 @@ var alarms;
 function getAlarmsForID(id)
 {
     var request = new XMLHttpRequest();
-    request.open("GET", "http://localhost:8085/alarmsForWrist?wristId=" + id, false);
+    request.open("GET", "https://xida.fwd.wf/alarmsForWrist?wristId=" + id, false);
     request.send(null);
     alarms = JSON.parse(request.responseText);
 }
@@ -36,7 +36,7 @@ function getAlarmsForID(id)
 function getAllAlarms ()
 {
     var request = new XMLHttpRequest();
-    request.open("GET", "http://localhost:8085/allalarms", false);
+    request.open("GET", "https://xida.fwd.wf/allalarms", false);
     request.send(null);
     alarms = JSON.parse(request.responseText);
 }
@@ -177,10 +177,10 @@ img.onload = function()
 };  // can be redrawn later, but loading has to be complete first
 
 
-window.setInterval(function()
-{
-    updateCanvas();
-}, 5000);
+// window.setInterval(function()
+// {
+//     updateCanvas();
+// }, 5000);
 
 updateCanvas();
 
@@ -217,7 +217,7 @@ function newAlarm ()
 
 
   params = encodeURI(params);
-  xhr.open('GET', "http://localhost:8085/addAlarm"+params, true)
+  xhr.open('GET', "https://xida.fwd.wf/addAlarm"+params, true)
   xhr.send(null)
 
   getAllAlarms();
@@ -337,7 +337,7 @@ function getPositionByID(id)
 {
     // alert(id);
     var request = new XMLHttpRequest();
-    request.open("GET", "http://localhost:8085/devicesLastCords", false);
+    request.open("GET", "https://xida.fwd.wf/devicesLastCords", false);
     request.send(null);
     positions = JSON.parse(request.responseText);
 
