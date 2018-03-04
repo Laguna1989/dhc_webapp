@@ -1,3 +1,5 @@
+var displayPersons;
+
 //////////////////////////
 //parse json file with resource data
 //////////////////////////
@@ -68,6 +70,13 @@ function trackerIDtoMyID(tid)
         return r.id;
    }
    return 0;
+}
+
+function displayPatientsCheckBox()
+{
+    // Get the checkbox
+    var checkBox = document.getElementById("myCheck");
+    
 }
 
 function getNameForId(id)
@@ -188,8 +197,8 @@ function newAlarm ()
   params += "&creatorWristId=" + creator;
   params += "&receiverWristId=" + receiver;
 
+  
   params = encodeURI(params);
-
   xhr.open('GET', "http://localhost:8085/addAlarm"+params, true)
   xhr.send(null)
 
