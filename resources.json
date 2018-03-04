@@ -6,13 +6,13 @@
 			"name" 	: "Max Mustermann", 
             "type" 	: "patient", 
             "id"    : 1,
-            "rooms" : [ "a2"]
+            "rooms" : [ "a1", "a2"]
         },
 		{
 			"name" 	: "Maria Musterfrau", 
             "type" 	: "patient", 
             "id"    : 2,
-            "rooms" : [ "a2"]
+            "rooms" : [ "a1", "a2"]
         },
         {
 			"name" 	: "Dr. Schubert", 
@@ -36,43 +36,43 @@
 			"name" 	: "XRay Device", 
             "type" 	: "device",
             "id"    : 6,
-            "rooms" : ["b1"]
+            "rooms" : ["a3"]
         },
         {
 			"name" 	: "EKG 1", 
             "type" 	: "device",
             "id"    : 7,
-            "rooms" : ["b2"]
+            "rooms" : ["a2"]
         },
         {
 			"name" 	: "EKG 2", 
             "type" 	: "device",
             "id"    : 8,
-            "rooms" : ["b2"]
+            "rooms" : ["a2"]
         },
         {
 			"name" 	: "EKG 24h 1", 
             "type" 	: "device",
             "id"    : 9,
-            "rooms" : ["b2"]
+            "rooms" : ["a2"]
         },
         {
 			"name" 	: "EKG 24h 2", 
             "type" 	: "device",
             "id"    : 10,
-            "rooms" : ["b2"]
+            "rooms" : ["a2"]
         },
         {
 			"name" 	: "Blood Pressure Meter 1", 
             "type" 	: "device",
             "id"    : 11,
-            "rooms" : ["b3"]
+            "rooms" : ["a2"]
         },
         {
 			"name" 	: "Blood Pressure Meter 2", 
             "type" 	: "device",
             "id"    : 12,
-            "rooms" : ["b3"]
+            "rooms" : ["a2"]
 		}
         
     ]

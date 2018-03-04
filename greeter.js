@@ -1,22 +1,27 @@
-
 //////////////////////////
 //parse json file with resource data
 //////////////////////////
 
 var request = new XMLHttpRequest();
 request.open("GET", "resources.json", false);
-request.send(null)
+request.send(null);
 var resources = JSON.parse(request.responseText);
+
 
 for (var i in resources.resources)
 {
    newElement(resources.resources[i]);
 }
+
+
+request  = new XMLHttpRequest();
+request.open("GET", "areas.json", false);
+request.send(null);
+var areas = JSON.parse(request.responseText);
+
 //////////////////////////
 //parse json file for alarms
 //////////////////////////
-
-
 var alarms;
 function getAlarmsForID(id)
 {
@@ -32,6 +37,7 @@ updateAlarmTable();
 
 function updateAlarmTable()
 {
+    
     var tableHeaderRowCount = 1;
     var table = document.getElementById('alarmTable');
     var rowCount = table.rows.length;
@@ -47,17 +53,47 @@ function updateAlarmTable()
     }
 }
 
+function trackerIDtoMyID(tid)
+{
+    if (tid=="wrist1Id")
+        return 1;
+    else if (tid == "wrist2Id")
+        return 3;
+    else if (tid == "wrist3Id")
+        return 2;
+    else if (tid == "wrist4Id")
+        return 4;
+    else 
+        return 5;
+}
+
+function getNameForId(id)
+{
+    if (id == 0 ||id == 5)
+        return "desktop";
+    for(var i in resources.resources)
+    {
+        var r = resources.resources[i];
+        if (r.id == id)
+            return r.name;
+    }
+    return "desktop";
+}
+
 function pushAlarmToList(alarm)
 {
-    var tr = document.createElement("tr");
-    tr.setAttribute("myID", alarm.id);
     
+    var tr = document.createElement("tr");
+
+
     var td = document.createElement("td");
-    td.appendChild(document.createTextNode(alarm.receiverWristId))
+    var idText = getNameForId(trackerIDtoMyID(alarm.receiverWristId));
+    td.appendChild(document.createTextNode(idText))
     tr.appendChild(td);
 
     var td2 = document.createElement("td");
-    td2.appendChild(document.createTextNode(alarm.creatorWristId));
+    var idText2 = getNameForId(trackerIDtoMyID(alarm.creatorWristId));
+    td2.appendChild(document.createTextNode(idText2));
     tr.appendChild(td2);
 
     var td3 = document.createElement("td");
@@ -127,7 +163,8 @@ function newElement(resource)
 {
     var tr = document.createElement("tr");
     tr.setAttribute("myID", resource.id);
-    
+    tr.setAttribute("myType", resource.type);
+
     var td = document.createElement("td");
     td.setAttribute("align", "center");
     var tdi = document.createElement("img");
@@ -155,7 +192,6 @@ function newElement(resource)
     var td3 = document.createElement("td");
     td3.setAttribute("align", "center");
     var str = "";
-    // alert(resource.rooms);
     for (var i in resource.rooms)
     {
         var r = resource.rooms[i];
@@ -164,8 +200,6 @@ function newElement(resource)
     
     td3.appendChild(document.createTextNode(str));
     tr.appendChild(td3);
-
-
 
     document.getElementById("resourceTable").appendChild(tr);
 
@@ -176,14 +210,14 @@ function newElement(resource)
 //////////////////////////////
 var table = document.getElementById("resourceTable");
 if (table != null) 
-{
-    
+{    
     for (var i = 0; i < table.rows.length; i++) 
     {
         table.rows[i].onclick = function () 
         {
             var myID = this.getAttribute("myID") ;
-            updateTableSelection(myID);
+            var myType = this.getAttribute("myType");
+            updateTableSelection(myID, myType);
         };
     }
 }
@@ -200,7 +234,7 @@ var mocks = JSON.parse(request.responseText);
 
 function getPositionByID(id)
 {
-    if (id == 0)
+    if (id == 0 || id >= 9)
     {
         // TODO get position data
         return [5,5];
@@ -215,15 +249,36 @@ function getPositionByID(id)
     }
 }
 
-function updateTableSelection(id) 
+function updateTableSelection(id, type) 
 {
-
+    
     ctx.clearRect(0,0,800,600);
-    ctx.drawImage(img,0,0);
-    var pos = getPositionByID(id);
+    ctx.drawImage(img,0,0,img.width * 0.6, img.height * 0.6);
+    
     ctx.fillStyle="#FF0000";
-    ctx.fillRect(pos[0], pos[1], 20, 20);
-    ctx.fillStyle="#000000";
+
+    for (i in areas.pos)
+    {
+        var a = areas.pos[i];
+        var x = a.x + 2;
+        var y = a.y + 2;
+        var w = a.width;
+        var h = a.height;
+
+        ctx.beginPath();
+        ctx.lineWidth="2";
+        ctx.strokeStyle="rgb(40,40,100)";
+        ctx.rect(x,y,w,h); 
+        ctx.stroke();
+
+    }
+
+    if (type == "device")
+    {
+        var pos = getPositionByID(id);
+        ctx.fillRect(pos[0], pos[1], 20, 20);
+        ctx.fillStyle="#000000";
+    }
 }
 
 
@@ -375,6 +430,7 @@ function sortTable2(n) {
         } 
     }
 }
+
 
 ////////////////////////////////////
 // Filter Alarms code
